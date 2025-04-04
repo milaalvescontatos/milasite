@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,37 +16,28 @@
         .container {
             display: flex;
             justify-content: center;
-            gap: 20px;
             flex-wrap: wrap;
-            padding: 50px;
+            gap: 20px;
+            padding: 20px;
         }
         .pack {
-            width: 250px;
-            height: 350px;
-            background-color: rgba(0, 0, 0, 0.7);
+            width: 300px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
         }
         .pack img, .pack video {
             width: 100%;
-            height: auto;
             border-radius: 10px;
         }
-        .pack h2 {
-            margin: 10px 0;
-        }
-        .buy-button {
-            background-color: #ff9800;
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #ff6600;
             color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
             text-decoration: none;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -55,29 +46,29 @@
     <div class="container">
         <div class="pack">
             <h2>Pack Inicial - R$14,90</h2>
-            <img src="pack-inicial.jpg" alt="Pack Inicial">
-            <a class="buy-button" href="#">Comprar</a>
+            <img src="inicial.png" alt="Pack Inicial">
+            <a href="#" class="button">Comprar</a>
         </div>
         <div class="pack">
             <h2>Pack Prata - R$24,90</h2>
-            <img src="pack-prata.jpg" alt="Pack Prata">
-            <a class="buy-button" href="#">Comprar</a>
+            <img src="prata.png" alt="Pack Prata">
+            <a href="#" class="button">Comprar</a>
         </div>
         <div class="pack">
             <h2>Pack Gold - R$49,90</h2>
             <video controls>
-                <source src="pack-gold.mp4" type="video/mp4">
+                <source src="gold.mov" type="video/mp4">
                 Seu navegador não suporta vídeos.
             </video>
-            <a class="buy-button" href="#">Comprar</a>
+            <a href="#" class="button">Comprar</a>
         </div>
         <div class="pack">
             <h2>Pack Premium - R$97,00</h2>
             <video controls>
-                <source src="pack-premium.mp4" type="video/mp4">
+                <source src="Premiun.mp4" type="video/mp4">
                 Seu navegador não suporta vídeos.
             </video>
-            <a class="buy-button" href="#">Comprar</a>
+            <a href="#" class="button">Comprar</a>
         </div>
     </div>
 </body>
