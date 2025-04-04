@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja de Packs</title>
+    <title>Pacotes Exclusivos</title>
     <style>
         body {
             background-image: url('Fundo.avif');
@@ -11,64 +11,62 @@
             background-position: center;
             text-align: center;
             font-family: Arial, sans-serif;
-            color: white;
         }
         .container {
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             gap: 20px;
-            padding: 20px;
+            margin-top: 50px;
         }
         .pack {
             width: 300px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.7);
+            height: 300px;
+            position: relative;
             border-radius: 10px;
+            overflow: hidden;
         }
         .pack img, .pack video {
             width: 100%;
-            border-radius: 10px;
+            height: 100%;
+            object-fit: cover;
         }
-        .button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
-            background: #ff6600;
+        .pack video {
+            loop: true;
+            autoplay: true;
+            muted: true;
+            playsinline: true;
+        }
+        .pack-title {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
-            text-decoration: none;
+            padding: 5px 10px;
             border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>Escolha seu Pack</h1>
     <div class="container">
         <div class="pack">
-            <h2>Pack Inicial - R$14,90</h2>
+            <div class="pack-title">Pack Inicial</div>
             <img src="inicial.png" alt="Pack Inicial">
-            <a href="#" class="button">Comprar</a>
         </div>
         <div class="pack">
-            <h2>Pack Prata - R$24,90</h2>
+            <div class="pack-title">Pack Prata</div>
             <img src="prata.png" alt="Pack Prata">
-            <a href="#" class="button">Comprar</a>
         </div>
         <div class="pack">
-            <h2>Pack Gold - R$49,90</h2>
-            <video controls>
-                <source src="gold.mov" type="video/mp4">
-                Seu navegador não suporta vídeos.
-            </video>
-            <a href="#" class="button">Comprar</a>
+            <div class="pack-title">Pack Gold</div>
+            <video src="gold.mp4" autoplay muted loop></video>
         </div>
         <div class="pack">
-            <h2>Pack Premium - R$97,00</h2>
-            <video controls>
-                <source src="Premiun.mp4" type="video/mp4">
-                Seu navegador não suporta vídeos.
-            </video>
-            <a href="#" class="button">Comprar</a>
+            <div class="pack-title">Pack Premium</div>
+            <video src="Premiun.mp4" autoplay muted loop></video>
         </div>
     </div>
 </body>
