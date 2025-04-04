@@ -3,53 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso Exclusivo 🔥</title>
+    <title>Comprar Packs</title>
     <style>
         body {
-            background-color: black;
-            color: gold;
-            text-align: center;
             font-family: Arial, sans-serif;
+            text-align: center;
             padding: 20px;
         }
-        h1 {
-            font-size: 2em;
+        .pack {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: inline-block;
+            width: 250px;
         }
-        p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        .botao {
-            display: block;
-            width: 80%;
-            max-width: 300px;
-            margin: 10px auto;
-            padding: 15px;
-            text-decoration: none;
+        button {
+            background-color: #4CAF50;
             color: white;
-            background-color: gold;
-            font-size: 1.2em;
-            border-radius: 10px;
-            font-weight: bold;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        .botao:hover {
-            background-color: darkgoldenrod;
-        }
-        .imagem-destaque {
-            width: 80%;
-            max-width: 400px;
-            margin: 20px auto;
-            display: block;
-            border-radius: 10px;
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <h1>Acesso Exclusivo ao Meu Conteúdo 🔥</h1>
-    <img src="Design%20sem%20nome%20(57).png" alt="Imagem de Destaque" class="imagem-destaque">
-    <p>Entre agora no meu grupo VIP e tenha acesso a conteúdos exclusivos!</p>
+    <h1>Escolha seu Pack</h1>
     
-    <a href="https://t.me/seu_grupo" class="botao">Acessar o Telegram</a>
-    <a href="https://wa.me/seu_numero" class="botao">Acessar o WhatsApp</a>
+    <div class="pack">
+        <h2>Pack Inicial</h2>
+        <p>R$14,90</p>
+        <button onclick="copiarPix('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510oE0syliTVr63042476')">Copiar Pix</button>
+    </div>
+    
+    <div class="pack">
+        <h2>Pack Prata</h2>
+        <p>R$24,90</p>
+        <button onclick="copiarPix('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510LoM1fu31zv6304A3A4')">Copiar Pix</button>
+    </div>
+    
+    <div class="pack">
+        <h2>Pack Gold</h2>
+        <p>R$49,90</p>
+        <button onclick="copiarPix('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com52040000530398654049.905802BR5917Mila Alves Vieira6009SAO PAULO62140510DHF1wt03ib6304C0C8')">Copiar Pix</button>
+    </div>
+    
+    <div class="pack">
+        <h2>Pack Premium</h2>
+        <p>R$97,00</p>
+        <button onclick="copiarPix('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO62140510D2jMGOzExE6304BE62')">Copiar Pix</button>
+    </div>
+    
+    <script>
+        function copiarPix(codigoPix) {
+            navigator.clipboard.writeText(codigoPix).then(function() {
+                alert("Código Pix copiado! Agora envie o comprovante pelo WhatsApp.");
+                window.location.href = "https://wa.me/553599028959?text=Ol%C3%A1!+Fiz+um+pagamento+e+gostaria+de+enviar+o+comprovante.";
+            }, function(err) {
+                alert("Erro ao copiar o código Pix. Copie manualmente:");
+            });
+        }
+    </script>
 </body>
 </html>
