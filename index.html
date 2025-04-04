@@ -1,105 +1,83 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pacotes Exclusivos</title>
+    <title>Loja de Packs</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background: url('Fundo.avif') no-repeat center center fixed;
+            background-image: url('Fundo.avif');
             background-size: cover;
-            font-family: Arial, sans-serif;
+            background-position: center;
             text-align: center;
+            font-family: Arial, sans-serif;
             color: white;
         }
         .container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
             gap: 20px;
-            padding: 50px 20px;
+            flex-wrap: wrap;
+            padding: 50px;
         }
         .pack {
             width: 250px;
             height: 350px;
-            position: relative;
-            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .pack:hover {
-            transform: scale(1.05);
-        }
-        .pack img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .pack-info {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding: 10px;
         }
-        .pack-info h3, .pack-info p {
-            margin: 5px 0;
+        .pack img, .pack video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            background: #ff5733;
+        .pack h2 {
+            margin: 10px 0;
+        }
+        .buy-button {
+            background-color: #ff9800;
             color: white;
-            text-decoration: none;
-            font-weight: bold;
+            padding: 10px;
+            border: none;
             border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-        .button:hover {
-            background: #cc4625;
+            cursor: pointer;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <h1>Escolha Seu Pacote</h1>
+    <h1>Escolha seu Pack</h1>
     <div class="container">
         <div class="pack">
+            <h2>Pack Inicial - R$14,90</h2>
             <img src="pack-inicial.jpg" alt="Pack Inicial">
-            <div class="pack-info">
-                <h3>Pack Inicial</h3>
-                <p>R$ 14,90</p>
-                <a href="#" class="button">Comprar</a>
-            </div>
+            <a class="buy-button" href="#">Comprar</a>
         </div>
         <div class="pack">
-            <img src="pack-prata.mp4" alt="Pack Prata">
-            <div class="pack-info">
-                <h3>Pack Prata</h3>
-                <p>R$ 24,90</p>
-                <a href="#" class="button">Comprar</a>
-            </div>
+            <h2>Pack Prata - R$24,90</h2>
+            <img src="pack-prata.jpg" alt="Pack Prata">
+            <a class="buy-button" href="#">Comprar</a>
         </div>
         <div class="pack">
-            <img src="pack-gold.png" alt="Pack Gold">
-            <div class="pack-info">
-                <h3>Pack Gold</h3>
-                <p>R$ 49,90</p>
-                <a href="#" class="button">Comprar</a>
-            </div>
+            <h2>Pack Gold - R$49,90</h2>
+            <video controls>
+                <source src="pack-gold.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+            <a class="buy-button" href="#">Comprar</a>
         </div>
         <div class="pack">
-            <img src="pack-premium.jpg" alt="Pack Premium">
-            <div class="pack-info">
-                <h3>Pack Premium</h3>
-                <p>R$ 97,00</p>
-                <a href="#" class="button">Comprar</a>
-            </div>
+            <h2>Pack Premium - R$97,00</h2>
+            <video controls>
+                <source src="pack-premium.mp4" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+            <a class="buy-button" href="#">Comprar</a>
         </div>
     </div>
 </body>
