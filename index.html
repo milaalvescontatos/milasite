@@ -23,7 +23,7 @@
         }
         .pack {
             width: 300px;
-            height: 350px;
+            height: 400px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -54,31 +54,21 @@
             cursor: pointer;
             font-size: 16px;
             border-radius: 5px;
+            margin-top: 10px;
         }
         .pack button:hover {
             background-color: #e63e00;
         }
-        .comprovante {
-            display: none;
-            margin-top: 10px;
-        }
     </style>
     <script>
-        function mostrarComprovante(pack, link) {
-            const comprovanteDiv = document.getElementById(`comprovante-${pack}`);
-            comprovanteDiv.style.display = 'block';
-            document.getElementById(`pix-link-${pack}`).href = link;
-        }
-
-        function enviarComprovante(pack) {
-            const fileInput = document.getElementById(`file-${pack}`);
-            if (fileInput.files.length > 0) {
-                const numeroWhatsApp = '+553599028959';
-                const mensagem = `Comprovante de pagamento do ${pack}`;
-                const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensagem)}`;
-                window.open(url, '_blank');
+        function confirmarPagamento(link) {
+            let comprovante = prompt("Após realizar o pagamento, envie o comprovante abaixo:");
+            if (comprovante) {
+                let whatsapp = "https://wa.me/553599028959?text=" + encodeURIComponent("Olá, fiz o pagamento! Segue o comprovante: " + comprovante);
+                window.location.href = whatsapp;
             } else {
-                alert("Por favor, envie um comprovante antes de continuar.");
+                alert("Por favor, realize o pagamento primeiro!");
+                window.open(link, '_blank');
             }
         }
     </script>
@@ -89,42 +79,22 @@
         <div class="pack">
             <span>Pack Inicial - R$14,90</span>
             <img src="inicial.png" alt="Pack Inicial">
-            <button onclick="mostrarComprovante('inicial', 'https://nubank.com.br/cobrar/oE0syliTVr')">Comprar</button>
-            <div id="comprovante-inicial" class="comprovante">
-                <a id="pix-link-inicial" href="#" target="_blank">Pagar agora</a>
-                <input type="file" id="file-inicial">
-                <button onclick="enviarComprovante('inicial')">Enviar Comprovante</button>
-            </div>
+            <button onclick="confirmarPagamento('https://nubank.com.br/cobrar/1e01ym/67f00bcd-af70-4292-9dc2-14de366bf095')">Comprar</button>
         </div>
         <div class="pack">
             <span>Pack Prata - R$24,90</span>
             <img src="prata.png" alt="Pack Prata">
-            <button onclick="mostrarComprovante('prata', 'https://nubank.com.br/cobrar/LoM1fu31zv')">Comprar</button>
-            <div id="comprovante-prata" class="comprovante">
-                <a id="pix-link-prata" href="#" target="_blank">Pagar agora</a>
-                <input type="file" id="file-prata">
-                <button onclick="enviarComprovante('prata')">Enviar Comprovante</button>
-            </div>
+            <button onclick="confirmarPagamento('https://nubank.com.br/cobrar/1e01ym/67f00bf5-da03-4517-ae69-e3ba39c8c74e')">Comprar</button>
         </div>
         <div class="pack">
             <span>Pack Gold - R$49,90</span>
             <video src="gold.mov" autoplay muted></video>
-            <button onclick="mostrarComprovante('gold', 'https://nubank.com.br/cobrar/McXe2zqSx9')">Comprar</button>
-            <div id="comprovante-gold" class="comprovante">
-                <a id="pix-link-gold" href="#" target="_blank">Pagar agora</a>
-                <input type="file" id="file-gold">
-                <button onclick="enviarComprovante('gold')">Enviar Comprovante</button>
-            </div>
+            <button onclick="confirmarPagamento('https://nubank.com.br/cobrar/1e01ym/67f00c17-932c-44bb-a379-5c964a1376a8')">Comprar</button>
         </div>
         <div class="pack">
             <span>Pack Premium - R$97,00</span>
             <video src="Premiun.mp4" autoplay muted></video>
-            <button onclick="mostrarComprovante('premium', 'https://nubank.com.br/cobrar/D2jMGOzExE')">Comprar</button>
-            <div id="comprovante-premium" class="comprovante">
-                <a id="pix-link-premium" href="#" target="_blank">Pagar agora</a>
-                <input type="file" id="file-premium">
-                <button onclick="enviarComprovante('premium')">Enviar Comprovante</button>
-            </div>
+            <button onclick="confirmarPagamento('https://nubank.com.br/cobrar/1e01ym/67f00c2c-efed-4eeb-b50f-b3fdf347d0da')">Comprar</button>
         </div>
     </div>
 </body>
