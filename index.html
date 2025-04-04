@@ -5,31 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento via Pix</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f8f9fa; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
         .hidden { display: none; }
+        button { background: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; margin: 10px; }
+        button:hover { background: #218838; }
+        img { max-width: 100%; border-radius: 10px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
-    <h2>Escolha seu pacote e faça o pagamento via Pix</h2>
-    <p>Clique no botão abaixo para copiar o código Pix e realizar o pagamento.</p>
-    
-    <button onclick="copiarPix()">Copiar Pix de R$14,90</button>
-    <p id="confirmacao" class="hidden">Agora clique abaixo e envie seu comprovante.</p>
-    
-    <button id="jaPaguei" class="hidden" onclick="mostrarFormulario()">Já paguei</button>
-    
-    <div id="formulario" class="hidden">
-        <p>Envie seu comprovante para confirmar o pagamento.</p>
-        <input type="file" id="comprovante">
-        <button onclick="enviarComprovante()">Enviar</button>
+    <div class="container">
+        <img src="sua-imagem.png" alt="Imagem de destaque">
+        <h2>Escolha seu pacote e faça o pagamento via Pix</h2>
+        <p>Clique no botão abaixo para copiar o código Pix e realizar o pagamento.</p>
+        
+        <button onclick="copiarPix('14.90', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510oE0syliTVr63042476')">Copiar Pix de R$14,90</button>
+        <button onclick="copiarPix('24.90', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510LoM1fu31zv6304A3A4')">Copiar Pix de R$24,90</button>
+        <button onclick="copiarPix('49.90', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510DHF1wt03ib6304C0C8')">Copiar Pix de R$49,90</button>
+        <button onclick="copiarPix('97.00', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO62140510D2jMGOzExE6304BE62')">Copiar Pix de R$97,00</button>
+        
+        <p id="confirmacao" class="hidden">Agora clique abaixo e envie seu comprovante.</p>
+        
+        <button id="jaPaguei" class="hidden" onclick="mostrarFormulario()">Já paguei</button>
+        
+        <div id="formulario" class="hidden">
+            <p>Envie seu comprovante para confirmar o pagamento.</p>
+            <input type="file" id="comprovante">
+            <button onclick="enviarComprovante()">Enviar</button>
+        </div>
+        
+        <button id="botaoWhatsApp" class="hidden" onclick="redirecionarWhatsApp()">Acessar WhatsApp</button>
     </div>
-    
-    <button id="botaoWhatsApp" class="hidden" onclick="redirecionarWhatsApp()">Acessar WhatsApp</button>
 
     <script>
-        function copiarPix() {
-            navigator.clipboard.writeText("00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510oE0syliTVr63042476");
-            alert("Código Pix copiado! Agora realize o pagamento.");
+        function copiarPix(valor, codigo) {
+            navigator.clipboard.writeText(codigo);
+            alert(`Código Pix de R$${valor} copiado! Agora realize o pagamento.`);
             document.getElementById("confirmacao").classList.remove("hidden");
             document.getElementById("jaPaguei").classList.remove("hidden");
         }
