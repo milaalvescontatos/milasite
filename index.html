@@ -59,6 +59,15 @@
             background-color: #e63e00;
         }
     </style>
+    <script>
+        function confirmarPagamento(link, valor) {
+            let comprovante = prompt("Envie o comprovante de pagamento para confirmar sua compra de R$" + valor);
+            if (comprovante) {
+                alert("Pagamento confirmado! Você será redirecionado para o WhatsApp.");
+                window.location.href = "https://wa.me/553599028959?text=Comprovante:%20" + encodeURIComponent(comprovante);
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Escolha seu Pacote</h1>
@@ -66,22 +75,22 @@
         <div class="pack">
             <span>Pack Inicial - R$14,90</span>
             <img src="inicial.png" alt="Pack Inicial">
-            <button onclick="window.location.href='https://nubank.com.br/cobrar/codigo_inicial'">Comprar</button>
+            <button onclick="confirmarPagamento('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510oE0syliTVr63042476', 14.90)">Comprar</button>
         </div>
         <div class="pack">
             <span>Pack Prata - R$24,90</span>
             <img src="prata.png" alt="Pack Prata">
-            <button onclick="window.location.href='https://nubank.com.br/cobrar/codigo_prata'">Comprar</button>
+            <button onclick="confirmarPagamento('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510LoM1fu31zv6304A3A4', 24.90)">Comprar</button>
         </div>
         <div class="pack">
             <span>Pack Gold - R$49,90</span>
             <video src="gold.mov" autoplay muted></video>
-            <button onclick="window.location.href='https://nubank.com.br/cobrar/codigo_gold'">Comprar</button>
+            <button onclick="confirmarPagamento('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510McXe2zqSx963047617', 49.90)">Comprar</button>
         </div>
         <div class="pack">
             <span>Pack Premium - R$97,00</span>
             <video src="Premiun.mp4" autoplay muted></video>
-            <button onclick="window.location.href='https://nubank.com.br/cobrar/codigo_premium'">Comprar</button>
+            <button onclick="confirmarPagamento('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO62140510D2jMGOzExE6304BE62', 97.00)">Comprar</button>
         </div>
     </div>
 </body>
