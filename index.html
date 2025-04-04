@@ -1,71 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprar Packs</title>
+    <title>Pagamento via Pix</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .pack {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            display: inline-block;
-            width: 250px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <h1>Escolha seu Pack</h1>
+    <h2>Escolha seu pacote e faça o pagamento via Pix</h2>
+    <p>Clique no botão abaixo para copiar o código Pix e realizar o pagamento.</p>
     
-    <div class="pack">
-        <h2>Pack Inicial</h2>
-        <p>R$14,90</p>
-        <button onclick="copiarPix('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510oE0syliTVr63042476')">Copiar Pix</button>
+    <button onclick="copiarPix()">Copiar Pix de R$14,90</button>
+    <p id="confirmacao" class="hidden">Agora clique abaixo e envie seu comprovante.</p>
+    
+    <button id="jaPaguei" class="hidden" onclick="mostrarFormulario()">Já paguei</button>
+    
+    <div id="formulario" class="hidden">
+        <p>Envie seu comprovante para confirmar o pagamento.</p>
+        <input type="file" id="comprovante">
+        <button onclick="enviarComprovante()">Enviar</button>
     </div>
     
-    <div class="pack">
-        <h2>Pack Prata</h2>
-        <p>R$24,90</p>
-        <button onclick="copiarPix('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510LoM1fu31zv6304A3A4')">Copiar Pix</button>
-    </div>
-    
-    <div class="pack">
-        <h2>Pack Gold</h2>
-        <p>R$49,90</p>
-        <button onclick="copiarPix('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com52040000530398654049.905802BR5917Mila Alves Vieira6009SAO PAULO62140510DHF1wt03ib6304C0C8')">Copiar Pix</button>
-    </div>
-    
-    <div class="pack">
-        <h2>Pack Premium</h2>
-        <p>R$97,00</p>
-        <button onclick="copiarPix('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO62140510D2jMGOzExE6304BE62')">Copiar Pix</button>
-    </div>
-    
+    <button id="botaoWhatsApp" class="hidden" onclick="redirecionarWhatsApp()">Acessar WhatsApp</button>
+
     <script>
-        function copiarPix(codigoPix) {
-            navigator.clipboard.writeText(codigoPix).then(function() {
-                alert("Código Pix copiado! Agora envie o comprovante pelo WhatsApp.");
-                window.location.href = "https://wa.me/553599028959?text=Ol%C3%A1!+Fiz+um+pagamento+e+gostaria+de+enviar+o+comprovante.";
-            }, function(err) {
-                alert("Erro ao copiar o código Pix. Copie manualmente:");
-            });
+        function copiarPix() {
+            navigator.clipboard.writeText("00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510oE0syliTVr63042476");
+            alert("Código Pix copiado! Agora realize o pagamento.");
+            document.getElementById("confirmacao").classList.remove("hidden");
+            document.getElementById("jaPaguei").classList.remove("hidden");
+        }
+
+        function mostrarFormulario() {
+            document.getElementById("formulario").classList.remove("hidden");
+        }
+
+        function enviarComprovante() {
+            let arquivo = document.getElementById("comprovante").files[0];
+            if (arquivo) {
+                alert("Comprovante enviado com sucesso!");
+                document.getElementById("botaoWhatsApp").classList.remove("hidden");
+            } else {
+                alert("Por favor, selecione um arquivo para enviar.");
+            }
+        }
+
+        function redirecionarWhatsApp() {
+            let numeroWhatsApp = "553599028959";
+            let mensagem = "Oi, já fiz o pagamento e enviei o comprovante!";
+            window.location.href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
         }
     </script>
 </body>
