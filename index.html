@@ -23,29 +23,40 @@
         }
         .pack {
             width: 300px;
-            height: 300px;
+            height: 350px;
             position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             text-align: center;
             font-size: 20px;
             font-weight: bold;
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
             overflow: hidden;
+            padding: 10px;
         }
         .pack img, .pack video {
             width: 100%;
-            height: 100%;
+            height: 70%;
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: relative;
         }
         .pack span {
-            position: relative;
-            z-index: 1;
+            margin-top: 10px;
+        }
+        .pack button {
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .pack button:hover {
+            background-color: #e63e00;
         }
     </style>
 </head>
@@ -53,20 +64,24 @@
     <h1>Escolha seu Pacote</h1>
     <div class="container">
         <div class="pack">
-            <img src="inicial.png" alt="Pack Inicial">
             <span>Pack Inicial - R$14,90</span>
+            <img src="inicial.png" alt="Pack Inicial">
+            <button onclick="window.location.href='https://nubank.com.br/cobrar/codigo_inicial'">Comprar</button>
         </div>
         <div class="pack">
-            <img src="prata.png" alt="Pack Prata">
             <span>Pack Prata - R$24,90</span>
+            <img src="prata.png" alt="Pack Prata">
+            <button onclick="window.location.href='https://nubank.com.br/cobrar/codigo_prata'">Comprar</button>
         </div>
         <div class="pack">
-            <video src="gold.mov" autoplay muted></video>
             <span>Pack Gold - R$49,90</span>
+            <video src="gold.mov" autoplay muted></video>
+            <button onclick="window.location.href='https://nubank.com.br/cobrar/codigo_gold'">Comprar</button>
         </div>
         <div class="pack">
-            <video src="Premiun.mp4" autoplay muted></video>
             <span>Pack Premium - R$97,00</span>
+            <video src="Premiun.mp4" autoplay muted></video>
+            <button onclick="window.location.href='https://nubank.com.br/cobrar/codigo_premium'">Comprar</button>
         </div>
     </div>
 </body>
