@@ -119,13 +119,8 @@
       const textarea = document.getElementById('pix-code-' + packId);
       textarea.value = codigoPix;
 
-      // Ocultar outros packs abertos
       document.querySelectorAll('.pix-box').forEach(p => p.style.display = 'none');
-
-      // Mostrar atual
       box.style.display = 'flex';
-
-      // Iniciar contador
       iniciarContador(packId);
     }
 
@@ -148,7 +143,7 @@
     function iniciarContador(packId) {
       const contador = document.getElementById('contador-' + packId);
       clearInterval(contadores[packId]);
-      let tempo = 300; // 5 minutos
+      let tempo = 300;
       contadores[packId] = setInterval(() => {
         const minutos = String(Math.floor(tempo / 60)).padStart(2, '0');
         const segundos = String(tempo % 60).padStart(2, '0');
@@ -177,8 +172,8 @@
           💋 Amor, cola esse código no app do seu banco na opção "Pix Copia e Cola".<br>
           Depois, clica em "Escolher Arquivo", envia o comprovante e me chama no WhatsApp pra eu liberar tudo... só não se apaixona 😘
         </div>
-        <input type="file" id="file-inicial" />
-        <button onclick="enviarComprovante('inicial')">Enviar Comprovante</button>
+        <input type="file" id="file-inicial" style="width: 90%; max-width: 250px;"/>
+        <button onclick="enviarComprovante('inicial')" style="margin-top: 8px; width: 90%; max-width: 250px;">Enviar Comprovante</button>
         <div class="contador" id="contador-inicial"></div>
       </div>
       <div class="urgencia">🎁 Bônus surpresa para os 5 primeiros compradores do dia!</div>
