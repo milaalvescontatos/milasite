@@ -1,185 +1,217 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pacotes Exclusivos</title>
-    <style>
-        body {
-            background-image: url('Fundo.avif');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            text-align: center;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .pack {
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7);
-        }
-        .pack img, .pack video {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-        .pack span {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 15px 0;
-        }
-        .pack button {
-            background-color: #ff4500;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-        .pack button:hover {
-            background-color: #e63e00;
-        }
-        .pix-box {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.85);
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 10px;
-        }
-        .pix-box textarea {
-            width: 90%;
-            height: 50px;
-            resize: none;
-            text-align: center;
-            font-size: 14px;
-        }
-        .pix-box .tutorial {
-            margin-top: 10px;
-            font-size: 14px;
-            background-color: #222;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        .pix-box input[type="file"] {
-            margin-top: 10px;
-            background-color: white;
-            color: black;
-            padding: 5px;
-            border-radius: 5px;
-        }
-    </style>
-    <script>
-        function mostrarCompra(id) {
-            document.getElementById("pix-btn-" + id).style.display = 'block';
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pacotes Exclusivos</title>
+  <style>
+    body {
+      background-image: url('Fundo.avif');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      text-align: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+    }
+    .pack {
+      width: 300px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      position: relative;
+    }
+    .pack img, .pack video {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .pack span {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .pack button {
+      background-color: #ff4500;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+    .pack button:hover {
+      background-color: #e63e00;
+    }
+    .pix-box {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 15px;
+      width: 100%;
+    }
+    .pix-box textarea {
+      width: 95%;
+      height: 60px;
+      resize: none;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .pix-box input[type="file"] {
+      margin-top: 10px;
+    }
+    .pix-box .confirm-button {
+      background-color: #008000;
+      margin-top: 10px;
+    }
+    .tutorial {
+      text-align: left;
+      font-size: 14px;
+      margin-top: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .tutorial ul {
+      padding-left: 20px;
+      text-align: left;
+    }
+  </style>
+  <script>
+    function mostrarPixBox(pack) {
+      const box = document.getElementById('pix-' + pack);
+      box.style.display = 'flex';
+    }
 
-        function mostrarPix(id, codigoPix) {
-            let pixBox = document.getElementById("pix-box-" + id);
-            let pixInput = document.getElementById("pix-code-" + id);
+    function copiarPix(pack, codigoPix) {
+      let pixInput = document.getElementById("pix-code-" + pack);
+      pixInput.value = codigoPix;
+      pixInput.select();
+      document.execCommand("copy");
+      alert("Pix copiado com sucesso!");
+    }
 
-            pixBox.style.display = "flex";
-            pixInput.value = codigoPix;
-            pixInput.select();
-            document.execCommand("copy");
-            alert("Pix copiado! Agora siga o tutorial abaixo para pagar.");
-        }
-
-        function enviarComprovante(id) {
-            const fileInput = document.getElementById('file-' + id);
-            if (fileInput.files.length === 0) {
-                alert("Por favor, selecione o comprovante antes de continuar.");
-                return;
-            }
-            window.location.href = 'https://wa.me/553599028959';
-        }
-    </script>
+    function liberarEnvio(pack) {
+      const fileInput = document.getElementById('file-' + pack);
+      const btn = document.getElementById('enviar-' + pack);
+      if (fileInput.files.length > 0) {
+        btn.style.display = 'inline-block';
+      }
+    }
+  </script>
 </head>
 <body>
-    <h1>Escolha seu Pacote</h1>
-    <div class="container">
-
-        <!-- Pacote Base -->
-        <div class="pack">
-            <span>Pack Inicial - R$14,90</span>
-            <img src="inicial.png" alt="Pack Inicial">
-            <button onclick="mostrarCompra('inicial')">Comprar</button>
-            <button id="pix-btn-inicial" style="display:none" onclick="mostrarPix('inicial', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
-            <div class="pix-box" id="pix-box-inicial">
-                <textarea id="pix-code-inicial" readonly></textarea>
-                <div class="tutorial">
-                    Copie o código Pix acima e cole na área de pagamento do seu aplicativo bancário.
-                </div>
-                <input type="file" id="file-inicial" accept="image/*">
-                <button onclick="enviarComprovante('inicial')">Enviar Comprovante</button>
-            </div>
+  <h1>Escolha seu Pacote</h1>
+  <div class="container">
+    <!-- PACK INICIAL -->
+    <div class="pack">
+      <span>Pack Inicial - R$14,90</span>
+      <img src="inicial.png" alt="Pack Inicial">
+      <button onclick="mostrarPixBox('inicial')">Comprar</button>
+      <div class="pix-box" id="pix-inicial">
+        <button onclick="copiarPix('inicial', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
+        <textarea id="pix-code-inicial" readonly></textarea>
+        <div class="tutorial">
+          <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
+          <ul>
+            <li>Clique em “Pagar com Pix (copia e cola)”</li>
+            <li>Vá no seu banco e cole o código</li>
+            <li>Confirme o valor e finalize o pagamento</li>
+            <li>Clique em “Escolher arquivo” e anexe seu comprovante</li>
+            <li>Quando fizer isso, eu mesma vou te atender no WhatsApp com algo especial...</li>
+          </ul>
         </div>
-
-        <!-- Pacote Prata -->
-        <div class="pack">
-            <span>Pack Prata - R$24,90</span>
-            <img src="prata.png" alt="Pack Prata">
-            <button onclick="mostrarCompra('prata')">Comprar</button>
-            <button id="pix-btn-prata" style="display:none" onclick="mostrarPix('prata', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510eMfL7gDPJI6304CFEE')">Pagar com Pix (copia e cola)</button>
-            <div class="pix-box" id="pix-box-prata">
-                <textarea id="pix-code-prata" readonly></textarea>
-                <div class="tutorial">
-                    Copie o código Pix acima e cole na área de pagamento do seu aplicativo bancário.
-                </div>
-                <input type="file" id="file-prata" accept="image/*">
-                <button onclick="enviarComprovante('prata')">Enviar Comprovante</button>
-            </div>
-        </div>
-
-        <!-- Pacote Gold -->
-        <div class="pack">
-            <span>Pack Gold - R$49,90</span>
-            <video src="gold.mov" autoplay muted loop></video>
-            <button onclick="mostrarCompra('gold')">Comprar</button>
-            <button id="pix-btn-gold" style="display:none" onclick="mostrarPix('gold', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510Ri2vOqA2Dp6304AAA9')">Pagar com Pix (copia e cola)</button>
-            <div class="pix-box" id="pix-box-gold">
-                <textarea id="pix-code-gold" readonly></textarea>
-                <div class="tutorial">
-                    Copie o código Pix acima e cole na área de pagamento do seu aplicativo bancário.
-                </div>
-                <input type="file" id="file-gold" accept="image/*">
-                <button onclick="enviarComprovante('gold')">Enviar Comprovante</button>
-            </div>
-        </div>
-
-        <!-- Pacote Premium -->
-        <div class="pack">
-            <span>Pack Premium - R$97,00</span>
-            <video src="Premiun.mp4" autoplay muted loop></video>
-            <button onclick="mostrarCompra('premium')">Comprar</button>
-            <button id="pix-btn-premium" style="display:none" onclick="mostrarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO621405105CDzbMNnSJ6304FB06')">Pagar com Pix (copia e cola)</button>
-            <div class="pix-box" id="pix-box-premium">
-                <textarea id="pix-code-premium" readonly></textarea>
-                <div class="tutorial">
-                    Copie o código Pix acima e cole na área de pagamento do seu aplicativo bancário.
-                </div>
-                <input type="file" id="file-premium" accept="image/*">
-                <button onclick="enviarComprovante('premium')">Enviar Comprovante</button>
-            </div>
-        </div>
-
+        <input type="file" id="file-inicial" onchange="liberarEnvio('inicial')">
+        <button id="enviar-inicial" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+      </div>
     </div>
+
+    <!-- PACK PRATA -->
+    <div class="pack">
+      <span>Pack Prata - R$24,90</span>
+      <img src="prata.png" alt="Pack Prata">
+      <button onclick="mostrarPixBox('prata')">Comprar</button>
+      <div class="pix-box" id="pix-prata">
+        <button onclick="copiarPix('prata', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510eMfL7gDPJI6304CFEE')">Pagar com Pix (copia e cola)</button>
+        <textarea id="pix-code-prata" readonly></textarea>
+        <div class="tutorial">
+          <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
+          <ul>
+            <li>Clique em “Pagar com Pix (copia e cola)”</li>
+            <li>Vá no seu banco e cole o código</li>
+            <li>Confirme o valor e finalize o pagamento</li>
+            <li>Clique em “Escolher arquivo” e anexe seu comprovante</li>
+            <li>Quando fizer isso, eu mesma vou te atender no WhatsApp com algo especial...</li>
+          </ul>
+        </div>
+        <input type="file" id="file-prata" onchange="liberarEnvio('prata')">
+        <button id="enviar-prata" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+      </div>
+    </div>
+
+    <!-- PACK GOLD -->
+    <div class="pack">
+      <span>Pack Gold - R$49,90</span>
+      <video src="gold.mov" autoplay muted></video>
+      <button onclick="mostrarPixBox('gold')">Comprar</button>
+      <div class="pix-box" id="pix-gold">
+        <button onclick="copiarPix('gold', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510Ri2vOqA2Dp6304AAA9')">Pagar com Pix (copia e cola)</button>
+        <textarea id="pix-code-gold" readonly></textarea>
+        <div class="tutorial">
+          <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
+          <ul>
+            <li>Clique em “Pagar com Pix (copia e cola)”</li>
+            <li>Vá no seu banco e cole o código</li>
+            <li>Confirme o valor e finalize o pagamento</li>
+            <li>Clique em “Escolher arquivo” e anexe seu comprovante</li>
+            <li>Quando fizer isso, eu mesma vou te atender no WhatsApp com algo especial...</li>
+          </ul>
+        </div>
+        <input type="file" id="file-gold" onchange="liberarEnvio('gold')">
+        <button id="enviar-gold" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+      </div>
+    </div>
+
+    <!-- PACK PREMIUM -->
+    <div class="pack">
+      <span>Pack Premium - R$97,00</span>
+      <video src="Premiun.mp4" autoplay muted></video>
+      <button onclick="mostrarPixBox('premium')">Comprar</button>
+      <div class="pix-box" id="pix-premium">
+        <button onclick="copiarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO621405105CDzbMNnSJ6304FB06')">Pagar com Pix (copia e cola)</button>
+        <textarea id="pix-code-premium" readonly></textarea>
+        <div class="tutorial">
+          <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
+          <ul>
+            <li>Clique em “Pagar com Pix (copia e cola)”</li>
+            <li>Vá no seu banco e cole o código</li>
+            <li>Confirme o valor e finalize o pagamento</li>
+            <li>Clique em “Escolher arquivo” e anexe seu comprovante</li>
+            <li>Quando fizer isso, eu mesma vou te atender no WhatsApp com algo especial...</li>
+          </ul>
+        </div>
+        <input type="file" id="file-premium" onchange="liberarEnvio('premium')">
+        <button id="enviar-premium" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
