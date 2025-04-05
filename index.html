@@ -66,6 +66,8 @@
       cursor: pointer;
       margin-top: 10px;
       font-weight: bold;
+      max-width: 250px;
+      width: 90%;
     }
     .pack button:hover {
       background-color: #e6004e;
@@ -118,7 +120,6 @@
       const box = document.getElementById('pix-' + packId);
       const textarea = document.getElementById('pix-code-' + packId);
       textarea.value = codigoPix;
-
       document.querySelectorAll('.pix-box').forEach(p => p.style.display = 'none');
       box.style.display = 'flex';
       iniciarContador(packId);
@@ -160,25 +161,39 @@
 <body>
   <h1>Escolha o seu Pacote. Eu cuido do resto 😈</h1>
   <div class="container">
-    <div class="pack">
-      <span>Pack Inicial - R$14,90</span>
-      <img src="inicial.png" alt="Pack Inicial">
-      <div class="frase">“A primeira mordida… doce e provocante 😈”</div>
-      <button onclick="mostrarPix('inicial', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com...')">Comprar</button>
-      <div class="pix-box" id="pix-inicial">
-        <button onclick="copiarPix('inicial')">Pagar com Pix copia e cola</button>
-        <textarea id="pix-code-inicial" readonly></textarea>
-        <div style="margin-top:10px; font-size:13px; color:#ffc0cb">
-          💋 Amor, cola esse código no app do seu banco na opção "Pix Copia e Cola".<br>
-          Depois, clica em "Escolher Arquivo", envia o comprovante e me chama no WhatsApp pra eu liberar tudo... só não se apaixona 😘
-        </div>
-        <input type="file" id="file-inicial" style="width: 90%; max-width: 250px;"/>
-        <button onclick="enviarComprovante('inicial')" style="margin-top: 8px; width: 90%; max-width: 250px;">Enviar Comprovante</button>
-        <div class="contador" id="contador-inicial"></div>
-      </div>
-      <div class="urgencia">🎁 Bônus surpresa para os 5 primeiros compradores do dia!</div>
-      <div class="selos">✔️ Pagamento seguro | 🔥 500+ clientes | ⭐ 4.9/5 no WhatsApp</div>
-    </div>
+    <!-- Aqui os 4 pacotes -->
+    <!-- Usando o mesmo modelo do inicial -->
+    <script>
+      const pacotes = [
+        { id: 'inicial', nome: 'Pack Inicial - R$14,90', imagem: 'inicial.png', frase: '“A primeira mordida… doce e provocante 😈”' },
+        { id: 'prata', nome: 'Pack Prata - R$29,90', imagem: 'prata.png', frase: '“Mais ousada. Mais intensa. Só pra quem aguenta 💦”' },
+        { id: 'gold', nome: 'Pack Gold - R$49,90', imagem: 'gold.png', frase: '“Você nunca mais vai esquecer o gosto disso aqui…”' },
+        { id: 'premium', nome: 'Pack Premium - R$89,90', imagem: 'premium.png', frase: '“Essa é pra você que quer tudo. Com força, com fogo 🔥”' }
+      ];
+      const container = document.querySelector('.container');
+      pacotes.forEach(p => {
+        container.innerHTML += `
+        <div class="pack">
+          <span>${p.nome}</span>
+          <img src="${p.imagem}" alt="${p.nome}">
+          <div class="frase">${p.frase}</div>
+          <button onclick="mostrarPix('${p.id}', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com...')">Comprar</button>
+          <div class="pix-box" id="pix-${p.id}">
+            <button onclick="copiarPix('${p.id}')">Pagar com Pix copia e cola</button>
+            <textarea id="pix-code-${p.id}" readonly></textarea>
+            <div style="margin-top:10px; font-size:13px; color:#ffc0cb">
+              💋 Amor, cola esse código no app do seu banco na opção "Pix Copia e Cola".<br>
+              Depois, clica em "Escolher Arquivo", envia o comprovante e me chama no WhatsApp pra eu liberar tudo... só não se apaixona 😘
+            </div>
+            <input type="file" id="file-${p.id}" />
+            <button onclick="enviarComprovante('${p.id}')">Enviar Comprovante</button>
+            <div class="contador" id="contador-${p.id}"></div>
+          </div>
+          <div class="urgencia">🎁 Bônus surpresa para os 5 primeiros compradores do dia!</div>
+          <div class="selos">✔️ Pagamento seguro | 🔥 500+ clientes | ⭐ 4.9/5 no WhatsApp</div>
+        </div>`;
+      });
+    </script>
   </div>
   <div class="rodape">
     Pronta pra te enlouquecer… Mas só se você tiver coragem de abrir. Clique, pague e se entregue... o prazer tá a um Pix de distância 💋<br>
