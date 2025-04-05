@@ -122,9 +122,10 @@
       }
     }
 
-    function contagemRegressiva(pack, tempo) {
+    function contagemRegressiva(pack, tempoMin) {
       const countdownElement = document.getElementById('countdown-' + pack);
       const estoqueElement = document.getElementById('estoque-' + pack);
+      const tempo = Math.floor(Math.random() * (tempoMin.max - tempoMin.min + 1)) + tempoMin.min; // aleatório entre o intervalo
       const dataFinal = new Date().getTime() + tempo * 1000;
 
       const interval = setInterval(function() {
@@ -138,11 +139,10 @@
           return;
         }
 
-        const horas = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
         const minutos = Math.floor((remainingTime % (1000 * 60)) / 1000);
         const segundos = Math.floor((remainingTime % 1000) / 1000);
 
-        countdownElement.innerHTML = `${horas}h ${minutos}m ${segundos}s`;
+        countdownElement.innerHTML = `${minutos}m ${segundos}s`;
       }, 1000);
     }
 
@@ -166,10 +166,10 @@
 
     // Inicia contagem regressiva para cada pacote
     window.onload = function() {
-      contagemRegressiva('inicial', 60 * 60); // 1 hora
-      contagemRegressiva('prata', 30 * 60); // 30 minutos
-      contagemRegressiva('gold', 45 * 60); // 45 minutos
-      contagemRegressiva('premium', 120 * 60); // 2 horas
+      contagemRegressiva('inicial', {min: 3, max: 7}); // 3 a 7 minutos
+      contagemRegressiva('prata', {min: 3, max: 7}); // 3 a 7 minutos
+      contagemRegressiva('gold', {min: 3, max: 7}); // 3 a 7 minutos
+      contagemRegressiva('premium', {min: 3, max: 7}); // 3 a 7 minutos
 
       // Atualiza estoque
       atualizarEstoque('inicial');
@@ -235,7 +235,7 @@
     <!-- PACK GOLD -->
     <div class="pack">
       <span>Pack Gold - R$49,90</span>
-      <img src="gold.png" alt="Pack Gold">
+      <video src="gold.mp4" controls></video>
       <button onclick="mostrarPixBox('gold')">Comprar</button>
       <div class="urgency" id="estoque-gold"></div>
       <div id="countdown-gold"></div>
@@ -260,28 +260,9 @@
     <!-- PACK PREMIUM -->
     <div class="pack">
       <span>Pack Premium - R$99,90</span>
-      <img src="premium.png" alt="Pack Premium">
+      <video src="premium.mp4" controls></video>
       <button onclick="mostrarPixBox('premium')">Comprar</button>
       <div class="urgency" id="estoque-premium"></div>
       <div id="countdown-premium"></div>
       <div class="pix-box" id="pix-premium">
-        <button onclick="copiarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
-        <textarea id="pix-code-premium" readonly></textarea>
-        <div class="tutorial">
-          <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
-          <ul>
-            <li>Clique em “Pagar com Pix (copia e cola)”</li>
-            <li>Vá no seu banco e cole o código</li>
-            <li>Confirme o valor e finalize o pagamento</li>
-            <li>Clique em “Escolher arquivo” e anexe seu comprovante</li>
-            <li>Quando fizer isso, eu mesma vou te atender no WhatsApp com algo especial...</li>
-          </ul>
-        </div>
-        <input type="file" id="file-premium" onchange="liberarEnvio('premium')">
-        <button id="enviar-premium" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
-      </div>
-    </div>
-
-  </div>
-</body>
-</html>
+        <button onclick="copiarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR591
