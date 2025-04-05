@@ -13,53 +13,44 @@
             text-align: center;
             color: white;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            margin-top: 30px;
-            font-size: 2.5rem;
         }
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            padding: 40px 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .pack {
-            width: 320px;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.7);
             border-radius: 20px;
-            overflow: hidden;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.6);
-            transition: transform 0.3s ease;
-        }
-        .pack:hover {
-            transform: scale(1.03);
+            align-items: center;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7);
         }
         .pack img, .pack video {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
+            border-radius: 10px;
         }
         .pack span {
-            font-size: 1.2rem;
+            font-size: 20px;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 15px 0;
         }
         .pack button {
             background-color: #ff4500;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 10px 20px;
             cursor: pointer;
             font-size: 16px;
-            border-radius: 5px;
-            margin: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
         }
         .pack button:hover {
             background-color: #e63e00;
@@ -70,48 +61,54 @@
             align-items: center;
             background: rgba(0, 0, 0, 0.85);
             padding: 15px;
-            margin: 10px;
+            margin-top: 15px;
             border-radius: 10px;
         }
         .pix-box textarea {
             width: 90%;
-            height: 60px;
+            height: 50px;
             resize: none;
             text-align: center;
             font-size: 14px;
-            margin-bottom: 10px;
         }
-        .tutorial {
+        .pix-box .tutorial {
+            margin-top: 10px;
             font-size: 14px;
-            margin: 10px 0;
-            color: #ccc;
+            background-color: #222;
+            padding: 10px;
+            border-radius: 8px;
         }
         .pix-box input[type="file"] {
-            margin: 10px 0;
-            color: white;
-        }
-        .whatsapp-button {
-            display: none;
             margin-top: 10px;
-            background-color: #25d366;
+            background-color: white;
+            color: black;
+            padding: 5px;
+            border-radius: 5px;
         }
     </style>
     <script>
-        function mostrarPix(pack, codigoPix) {
-            let pixBox = document.getElementById("pix-" + pack);
-            let pixInput = document.getElementById("pix-code-" + pack);
-            pixBox.style.display = "flex";
-            pixInput.value = codigoPix;
+        function mostrarCompra(id) {
+            document.getElementById("pix-btn-" + id).style.display = 'block';
         }
 
-        function liberarWhatsapp(inputId, btnId) {
-            const input = document.getElementById(inputId);
-            const btn = document.getElementById(btnId);
-            if (input.files.length > 0) {
-                btn.style.display = 'block';
-            } else {
-                btn.style.display = 'none';
+        function mostrarPix(id, codigoPix) {
+            let pixBox = document.getElementById("pix-box-" + id);
+            let pixInput = document.getElementById("pix-code-" + id);
+
+            pixBox.style.display = "flex";
+            pixInput.value = codigoPix;
+            pixInput.select();
+            document.execCommand("copy");
+            alert("Pix copiado! Agora siga o tutorial abaixo para pagar.");
+        }
+
+        function enviarComprovante(id) {
+            const fileInput = document.getElementById('file-' + id);
+            if (fileInput.files.length === 0) {
+                alert("Por favor, selecione o comprovante antes de continuar.");
+                return;
             }
+            window.location.href = 'https://wa.me/553599028959';
         }
     </script>
 </head>
@@ -119,55 +116,67 @@
     <h1>Escolha seu Pacote</h1>
     <div class="container">
 
-        <!-- Pacote Inicial -->
+        <!-- Pacote Base -->
         <div class="pack">
-            <img src="inicial.png" alt="Pack Inicial">
             <span>Pack Inicial - R$14,90</span>
-            <button onclick="mostrarPix('inicial', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pix Copia e Cola</button>
-            <div class="pix-box" id="pix-inicial">
+            <img src="inicial.png" alt="Pack Inicial">
+            <button onclick="mostrarCompra('inicial')">Comprar</button>
+            <button id="pix-btn-inicial" style="display:none" onclick="mostrarPix('inicial', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
+            <div class="pix-box" id="pix-box-inicial">
                 <textarea id="pix-code-inicial" readonly></textarea>
-                <div class="tutorial">Copie o código acima, vá até seu banco, escolha a opção Pix &gt; Copia e Cola, cole e pague.</div>
-                <input type="file" id="comprovante-inicial" accept="image/*" onchange="liberarWhatsapp('comprovante-inicial','zap-inicial')">
-                <button class="whatsapp-button" id="zap-inicial" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante no WhatsApp</button>
+                <div class="tutorial">
+                    Copie o código Pix acima e cole na área de pagamento do seu aplicativo bancário.
+                </div>
+                <input type="file" id="file-inicial" accept="image/*">
+                <button onclick="enviarComprovante('inicial')">Enviar Comprovante</button>
             </div>
         </div>
 
         <!-- Pacote Prata -->
         <div class="pack">
-            <img src="prata.png" alt="Pack Prata">
             <span>Pack Prata - R$24,90</span>
-            <button onclick="mostrarPix('prata', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510eMfL7gDPJI6304CFEE')">Pix Copia e Cola</button>
-            <div class="pix-box" id="pix-prata">
+            <img src="prata.png" alt="Pack Prata">
+            <button onclick="mostrarCompra('prata')">Comprar</button>
+            <button id="pix-btn-prata" style="display:none" onclick="mostrarPix('prata', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510eMfL7gDPJI6304CFEE')">Pagar com Pix (copia e cola)</button>
+            <div class="pix-box" id="pix-box-prata">
                 <textarea id="pix-code-prata" readonly></textarea>
-                <div class="tutorial">Copie o código acima, vá até seu banco, escolha a opção Pix &gt; Copia e Cola, cole e pague.</div>
-                <input type="file" id="comprovante-prata" accept="image/*" onchange="liberarWhatsapp('comprovante-prata','zap-prata')">
-                <button class="whatsapp-button" id="zap-prata" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante no WhatsApp</button>
+                <div class="tutorial">
+                    Copie o código Pix acima e cole na área de pagamento do seu aplicativo bancário.
+                </div>
+                <input type="file" id="file-prata" accept="image/*">
+                <button onclick="enviarComprovante('prata')">Enviar Comprovante</button>
             </div>
         </div>
 
         <!-- Pacote Gold -->
         <div class="pack">
-            <video src="gold.mov" autoplay muted loop></video>
             <span>Pack Gold - R$49,90</span>
-            <button onclick="mostrarPix('gold', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510Ri2vOqA2Dp6304AAA9')">Pix Copia e Cola</button>
-            <div class="pix-box" id="pix-gold">
+            <video src="gold.mov" autoplay muted loop></video>
+            <button onclick="mostrarCompra('gold')">Comprar</button>
+            <button id="pix-btn-gold" style="display:none" onclick="mostrarPix('gold', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510Ri2vOqA2Dp6304AAA9')">Pagar com Pix (copia e cola)</button>
+            <div class="pix-box" id="pix-box-gold">
                 <textarea id="pix-code-gold" readonly></textarea>
-                <div class="tutorial">Copie o código acima, vá até seu banco, escolha a opção Pix &gt; Copia e Cola, cole e pague.</div>
-                <input type="file" id="comprovante-gold" accept="image/*" onchange="liberarWhatsapp('comprovante-gold','zap-gold')">
-                <button class="whatsapp-button" id="zap-gold" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante no WhatsApp</button>
+                <div class="tutorial">
+                    Copie o código Pix acima e cole na área de pagamento do seu aplicativo bancário.
+                </div>
+                <input type="file" id="file-gold" accept="image/*">
+                <button onclick="enviarComprovante('gold')">Enviar Comprovante</button>
             </div>
         </div>
 
         <!-- Pacote Premium -->
         <div class="pack">
-            <video src="Premiun.mp4" autoplay muted loop></video>
             <span>Pack Premium - R$97,00</span>
-            <button onclick="mostrarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO621405105CDzbMNnSJ6304FB06')">Pix Copia e Cola</button>
-            <div class="pix-box" id="pix-premium">
+            <video src="Premiun.mp4" autoplay muted loop></video>
+            <button onclick="mostrarCompra('premium')">Comprar</button>
+            <button id="pix-btn-premium" style="display:none" onclick="mostrarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO621405105CDzbMNnSJ6304FB06')">Pagar com Pix (copia e cola)</button>
+            <div class="pix-box" id="pix-box-premium">
                 <textarea id="pix-code-premium" readonly></textarea>
-                <div class="tutorial">Copie o código acima, vá até seu banco, escolha a opção Pix &gt; Copia e Cola, cole e pague.</div>
-                <input type="file" id="comprovante-premium" accept="image/*" onchange="liberarWhatsapp('comprovante-premium','zap-premium')">
-                <button class="whatsapp-button" id="zap-premium" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante no WhatsApp</button>
+                <div class="tutorial">
+                    Copie o código Pix acima e cole na área de pagamento do seu aplicativo bancário.
+                </div>
+                <input type="file" id="file-premium" accept="image/*">
+                <button onclick="enviarComprovante('premium')">Enviar Comprovante</button>
             </div>
         </div>
 
