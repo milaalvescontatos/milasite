@@ -94,16 +94,41 @@
       padding-left: 20px;
       text-align: left;
     }
-    #enviar-inicial, #enviar-prata, #enviar-gold, #enviar-premium {
-      display: none;
-      width: 100%;
-      transition: all 0.3s ease;
+    .countdown {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff4500;
+      margin-top: 10px;
     }
   </style>
   <script>
     function mostrarPixBox(pack) {
       const box = document.getElementById('pix-' + pack);
       box.style.display = 'flex';
+
+      // Iniciar a contagem regressiva de 10 minutos (600 segundos)
+      iniciarContagem(pack, 600);
+    }
+
+    function iniciarContagem(pack, tempo) {
+      let countdownElement = document.getElementById('countdown-' + pack);
+      let interval = setInterval(function() {
+        let minutes = Math.floor(tempo / 60);
+        let seconds = tempo % 60;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        countdownElement.innerHTML = `Tempo restante: ${minutes}:${seconds}`;
+
+        if (tempo <= 0) {
+          clearInterval(interval);
+          countdownElement.innerHTML = 'O tempo acabou!';
+          setTimeout(function() {
+            // Reiniciar a contagem com 5 minutos (300 segundos)
+            iniciarContagem(pack, 300);
+          }, 1000); // Atraso de 1 segundo para exibir "O tempo acabou!" antes de reiniciar
+        }
+
+        tempo--;
+      }, 1000);
     }
 
     function copiarPix(pack, codigoPix) {
@@ -120,11 +145,6 @@
       if (fileInput.files.length > 0) {
         btn.style.display = 'inline-block';
       }
-    }
-
-    function enviarComprovante(pack) {
-      alert("Comprovante enviado com sucesso!");
-      window.location.href = 'https://wa.me/553599028959';
     }
   </script>
 </head>
@@ -150,7 +170,8 @@
           </ul>
         </div>
         <input type="file" id="file-inicial" onchange="liberarEnvio('inicial')">
-        <button id="enviar-inicial" class="confirm-button" onclick="enviarComprovante('inicial')">Enviar Comprovante</button>
+        <button id="enviar-inicial" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+        <div class="countdown" id="countdown-inicial"></div>
       </div>
     </div>
 
@@ -173,7 +194,8 @@
           </ul>
         </div>
         <input type="file" id="file-prata" onchange="liberarEnvio('prata')">
-        <button id="enviar-prata" class="confirm-button" onclick="enviarComprovante('prata')">Enviar Comprovante</button>
+        <button id="enviar-prata" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+        <div class="countdown" id="countdown-prata"></div>
       </div>
     </div>
 
@@ -196,7 +218,8 @@
           </ul>
         </div>
         <input type="file" id="file-gold" onchange="liberarEnvio('gold')">
-        <button id="enviar-gold" class="confirm-button" onclick="enviarComprovante('gold')">Enviar Comprovante</button>
+        <button id="enviar-gold" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+        <div class="countdown" id="countdown-gold"></div>
       </div>
     </div>
 
@@ -219,7 +242,8 @@
           </ul>
         </div>
         <input type="file" id="file-premium" onchange="liberarEnvio('premium')">
-        <button id="enviar-premium" class="confirm-button" onclick="enviarComprovante('premium')">Enviar Comprovante</button>
+        <button id="enviar-premium" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+        <div class="countdown" id="countdown-premium"></div>
       </div>
     </div>
   </div>
