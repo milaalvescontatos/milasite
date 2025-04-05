@@ -6,17 +6,15 @@
   <title>Pacotes Exclusivos</title>
   <style>
     body {
-      background: linear-gradient(to bottom right, #2c1a43, #800000); /* gradiente de fundo sofisticado */
+      background-image: url('Fundo.avif');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       text-align: center;
       color: white;
-      font-family: 'Playfair Display', serif; /* Fonte elegante */
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-    }
-    h1 {
-      font-size: 2.5rem;
-      color: #ffd700; /* Dourado para o título */
-      margin-top: 30px;
     }
     .container {
       display: flex;
@@ -27,17 +25,14 @@
     }
     .pack {
       width: 300px;
-      background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro para os pacotes */
+      background-color: rgba(0, 0, 0, 0.8);
       border-radius: 20px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 15px;
-      transition: transform 0.3s ease; /* Animação ao passar o mouse */
-    }
-    .pack:hover {
-      transform: scale(1.05); /* Aumenta um pouco de tamanho ao passar o mouse */
+      position: relative;
     }
     .pack img, .pack video {
       width: 100%;
@@ -49,7 +44,6 @@
       margin-top: 10px;
       font-size: 18px;
       font-weight: bold;
-      color: #ffd700; /* Dourado para destacar o texto */
     }
     .pack button {
       background-color: #ff4500;
@@ -60,10 +54,9 @@
       cursor: pointer;
       font-size: 16px;
       border-radius: 5px;
-      transition: background-color 0.3s ease;
     }
     .pack button:hover {
-      background-color: #e63e00; /* Efeito ao passar o mouse */
+      background-color: #e63e00;
     }
     .pix-box {
       display: none;
@@ -101,15 +94,6 @@
       padding-left: 20px;
       text-align: left;
     }
-    @media (max-width: 768px) {
-      .pack {
-        width: 100%;
-        margin-bottom: 20px;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-    }
   </style>
   <script>
     function mostrarPixBox(pack) {
@@ -135,7 +119,7 @@
   </script>
 </head>
 <body>
-  <h1>Escolha seu Pacote Exclusivo</h1>
+  <h1>Escolha seu Pacote</h1>
   <div class="container">
     <!-- PACK INICIAL -->
     <div class="pack">
@@ -146,7 +130,7 @@
         <button onclick="copiarPix('inicial', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-inicial" readonly></textarea>
         <div class="tutorial">
-          <p><strong>Pronto para me ter só para você? 💌</strong></p>
+          <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
           <ul>
             <li>Clique em “Pagar com Pix (copia e cola)”</li>
             <li>Vá no seu banco e cole o código</li>
@@ -169,7 +153,7 @@
         <button onclick="copiarPix('prata', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510eMfL7gDPJI6304CFEE')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-prata" readonly></textarea>
         <div class="tutorial">
-          <p><strong>Pronto para me ter só para você? 💌</strong></p>
+          <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
           <ul>
             <li>Clique em “Pagar com Pix (copia e cola)”</li>
             <li>Vá no seu banco e cole o código</li>
@@ -186,13 +170,13 @@
     <!-- PACK GOLD -->
     <div class="pack">
       <span>Pack Gold - R$49,90</span>
-      <img src="gold.png" alt="Pack Gold">
+      <video src="gold.mov" autoplay muted></video>
       <button onclick="mostrarPixBox('gold')">Comprar</button>
       <div class="pix-box" id="pix-gold">
-        <button onclick="copiarPix('gold', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510g4LM9jF5mi6304A60E')">Pagar com Pix (copia e cola)</button>
+        <button onclick="copiarPix('gold', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510Ri2vOqA2Dp6304AAA9')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-gold" readonly></textarea>
         <div class="tutorial">
-          <p><strong>Pronto para me ter só para você? 💌</strong></p>
+          <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
           <ul>
             <li>Clique em “Pagar com Pix (copia e cola)”</li>
             <li>Vá no seu banco e cole o código</li>
@@ -208,14 +192,14 @@
 
     <!-- PACK PREMIUM -->
     <div class="pack">
-      <span>Pack Premium - R$79,90</span>
-      <img src="premium.png" alt="Pack Premium">
+      <span>Pack Premium - R$97,00</span>
+      <video src="Premiun.mp4" autoplay muted></video>
       <button onclick="mostrarPixBox('premium')">Comprar</button>
       <div class="pix-box" id="pix-premium">
-        <button onclick="copiarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540579.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RfZ8b9c2dy6304CF4A')">Pagar com Pix (copia e cola)</button>
+        <button onclick="copiarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO621405105CDzbMNnSJ6304FB06')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-premium" readonly></textarea>
         <div class="tutorial">
-          <p><strong>Pronto para me ter só para você? 💌</strong></p>
+          <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
           <ul>
             <li>Clique em “Pagar com Pix (copia e cola)”</li>
             <li>Vá no seu banco e cole o código</li>
