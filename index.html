@@ -94,10 +94,10 @@
       padding-left: 20px;
       text-align: left;
     }
-    .urgency {
-      color: #ff0000;
-      font-weight: bold;
-      margin-top: 10px;
+    #enviar-inicial, #enviar-prata, #enviar-gold, #enviar-premium {
+      display: none;
+      width: 100%;
+      transition: all 0.3s ease;
     }
   </style>
   <script>
@@ -122,61 +122,10 @@
       }
     }
 
-    function contagemRegressiva(pack, tempoMin) {
-      const countdownElement = document.getElementById('countdown-' + pack);
-      const estoqueElement = document.getElementById('estoque-' + pack);
-      const tempo = Math.floor(Math.random() * (tempoMin.max - tempoMin.min + 1)) + tempoMin.min; // aleatório entre o intervalo
-      const dataFinal = new Date().getTime() + tempo * 1000;
-
-      const interval = setInterval(function() {
-        const now = new Date().getTime();
-        const remainingTime = dataFinal - now;
-
-        if (remainingTime < 0) {
-          clearInterval(interval);
-          countdownElement.innerHTML = "Oferta Expirada";
-          estoqueElement.innerHTML = "Esgotado";
-          return;
-        }
-
-        const minutos = Math.floor((remainingTime % (1000 * 60)) / 1000);
-        const segundos = Math.floor((remainingTime % 1000) / 1000);
-
-        countdownElement.innerHTML = `${minutos}m ${segundos}s`;
-      }, 1000);
+    function enviarComprovante(pack) {
+      alert("Comprovante enviado com sucesso!");
+      window.location.href = 'https://wa.me/553599028959';
     }
-
-    // Atualizando estoque
-    let pacotesRestantes = {
-      inicial: 10,
-      prata: 5,
-      gold: 3,
-      premium: 1
-    };
-
-    function atualizarEstoque(pack) {
-      const estoqueElement = document.getElementById('estoque-' + pack);
-      if (pacotesRestantes[pack] > 0) {
-        estoqueElement.innerHTML = `Restam apenas ${pacotesRestantes[pack]} pacotes!`;
-        pacotesRestantes[pack]--;
-      } else {
-        estoqueElement.innerHTML = 'Esgotado';
-      }
-    }
-
-    // Inicia contagem regressiva para cada pacote
-    window.onload = function() {
-      contagemRegressiva('inicial', {min: 3, max: 7}); // 3 a 7 minutos
-      contagemRegressiva('prata', {min: 3, max: 7}); // 3 a 7 minutos
-      contagemRegressiva('gold', {min: 3, max: 7}); // 3 a 7 minutos
-      contagemRegressiva('premium', {min: 3, max: 7}); // 3 a 7 minutos
-
-      // Atualiza estoque
-      atualizarEstoque('inicial');
-      atualizarEstoque('prata');
-      atualizarEstoque('gold');
-      atualizarEstoque('premium');
-    };
   </script>
 </head>
 <body>
@@ -187,8 +136,6 @@
       <span>Pack Inicial - R$14,90</span>
       <img src="inicial.png" alt="Pack Inicial">
       <button onclick="mostrarPixBox('inicial')">Comprar</button>
-      <div class="urgency" id="estoque-inicial"></div>
-      <div id="countdown-inicial"></div>
       <div class="pix-box" id="pix-inicial">
         <button onclick="copiarPix('inicial', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-inicial" readonly></textarea>
@@ -203,19 +150,17 @@
           </ul>
         </div>
         <input type="file" id="file-inicial" onchange="liberarEnvio('inicial')">
-        <button id="enviar-inicial" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+        <button id="enviar-inicial" class="confirm-button" onclick="enviarComprovante('inicial')">Enviar Comprovante</button>
       </div>
     </div>
 
     <!-- PACK PRATA -->
     <div class="pack">
-      <span>Pack Prata - R$29,90</span>
+      <span>Pack Prata - R$24,90</span>
       <img src="prata.png" alt="Pack Prata">
       <button onclick="mostrarPixBox('prata')">Comprar</button>
-      <div class="urgency" id="estoque-prata"></div>
-      <div id="countdown-prata"></div>
       <div class="pix-box" id="pix-prata">
-        <button onclick="copiarPix('prata', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
+        <button onclick="copiarPix('prata', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510eMfL7gDPJI6304CFEE')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-prata" readonly></textarea>
         <div class="tutorial">
           <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
@@ -228,19 +173,17 @@
           </ul>
         </div>
         <input type="file" id="file-prata" onchange="liberarEnvio('prata')">
-        <button id="enviar-prata" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+        <button id="enviar-prata" class="confirm-button" onclick="enviarComprovante('prata')">Enviar Comprovante</button>
       </div>
     </div>
 
     <!-- PACK GOLD -->
     <div class="pack">
       <span>Pack Gold - R$49,90</span>
-      <video src="gold.mp4" controls></video>
+      <video src="gold.mov" autoplay muted></video>
       <button onclick="mostrarPixBox('gold')">Comprar</button>
-      <div class="urgency" id="estoque-gold"></div>
-      <div id="countdown-gold"></div>
       <div class="pix-box" id="pix-gold">
-        <button onclick="copiarPix('gold', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
+        <button onclick="copiarPix('gold', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510Ri2vOqA2Dp6304AAA9')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-gold" readonly></textarea>
         <div class="tutorial">
           <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
@@ -253,19 +196,17 @@
           </ul>
         </div>
         <input type="file" id="file-gold" onchange="liberarEnvio('gold')">
-        <button id="enviar-gold" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+        <button id="enviar-gold" class="confirm-button" onclick="enviarComprovante('gold')">Enviar Comprovante</button>
       </div>
     </div>
 
     <!-- PACK PREMIUM -->
     <div class="pack">
-      <span>Pack Premium - R$99,90</span>
-      <video src="premium.mp4" controls></video>
+      <span>Pack Premium - R$97,00</span>
+      <video src="Premiun.mp4" autoplay muted></video>
       <button onclick="mostrarPixBox('premium')">Comprar</button>
-      <div class="urgency" id="estoque-premium"></div>
-      <div id="countdown-premium"></div>
       <div class="pix-box" id="pix-premium">
-        <button onclick="copiarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
+        <button onclick="copiarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.005802BR5917Mila Alves Vieira6009SAO PAULO621405105CDzbMNnSJ6304FB06')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-premium" readonly></textarea>
         <div class="tutorial">
           <p><strong>Pronto pra me ter só pra você? 💌</strong></p>
@@ -278,7 +219,7 @@
           </ul>
         </div>
         <input type="file" id="file-premium" onchange="liberarEnvio('premium')">
-        <button id="enviar-premium" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959'">Enviar Comprovante</button>
+        <button id="enviar-premium" class="confirm-button" onclick="enviarComprovante('premium')">Enviar Comprovante</button>
       </div>
     </div>
   </div>
