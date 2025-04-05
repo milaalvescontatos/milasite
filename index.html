@@ -94,11 +94,18 @@
       padding-left: 20px;
       text-align: left;
     }
+    .countdown {
+      font-size: 18px;
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
   </style>
   <script>
     function mostrarPixBox(pack) {
       const box = document.getElementById('pix-' + pack);
       box.style.display = 'flex';
+      iniciarContagem(pack); // Inicia a contagem regressiva assim que o box é mostrado
     }
 
     function copiarPix(pack, codigoPix) {
@@ -116,6 +123,30 @@
         btn.style.display = 'inline-block';
       }
     }
+
+    function iniciarContagem(pack) {
+      let tempo = 600; // Tempo inicial (10 minutos)
+      let countdownElement = document.getElementById("countdown-" + pack);
+
+      const intervalo = setInterval(function() {
+        let minutos = Math.floor(tempo / 60);
+        let segundos = tempo % 60;
+        if (segundos < 10) segundos = "0" + segundos;
+
+        countdownElement.textContent = `Tempo restante: ${minutos}:${segundos}`;
+
+        if (tempo <= 0) {
+          clearInterval(intervalo);
+          countdownElement.textContent = "O tempo acabou!";
+          setTimeout(function() {
+            tempo = 300; // Tempo reinicia para 5 minutos após o tempo acabar
+            iniciarContagem(pack); // Reinicia a contagem
+          }, 1000);
+        }
+
+        tempo--;
+      }, 1000);
+    }
   </script>
 </head>
 <body>
@@ -126,6 +157,7 @@
       <span>Pack Inicial - R$14,90</span>
       <img src="inicial.png" alt="Pack Inicial">
       <button onclick="mostrarPixBox('inicial')">Garanta já o seu conteúdo exclusivo!</button>
+      <div class="countdown" id="countdown-inicial">Tempo restante: 10:00</div>
       <div class="pix-box" id="pix-inicial">
         <button onclick="copiarPix('inicial', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-inicial" readonly></textarea>
@@ -149,6 +181,7 @@
       <span>Pack Prata - R$24,90</span>
       <img src="prata.png" alt="Pack Prata">
       <button onclick="mostrarPixBox('prata')">Não perca! Seu acesso está esperando!</button>
+      <div class="countdown" id="countdown-prata">Tempo restante: 10:00</div>
       <div class="pix-box" id="pix-prata">
         <button onclick="copiarPix('prata', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540524.905802BR5917Mila Alves Vieira6009SAO PAULO62140510eMfL7gDPJI6304CFEE')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-prata" readonly></textarea>
@@ -172,6 +205,7 @@
       <span>Pack Gold - R$49,90</span>
       <video src="gold.mov" autoplay muted></video>
       <button onclick="mostrarPixBox('gold')">Garanta seu acesso exclusivo e não perca a chance!</button>
+      <div class="countdown" id="countdown-gold">Tempo restante: 10:00</div>
       <div class="pix-box" id="pix-gold">
         <button onclick="copiarPix('gold', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540549.905802BR5917Mila Alves Vieira6009SAO PAULO62140510Ri2vOqA2Dp6304AAA9')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-gold" readonly></textarea>
@@ -195,6 +229,7 @@
       <span>Pack Premium - R$97,00</span>
       <video src="Premiun.mp4" autoplay muted></video>
       <button onclick="mostrarPixBox('premium')">Acesso VIP imediato ao melhor conteúdo disponível. Não espere!</button>
+      <div class="countdown" id="countdown-premium">Tempo restante: 10:00</div>
       <div class="pix-box" id="pix-premium">
         <button onclick="copiarPix('premium', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540597.905802BR5917Mila Alves Vieira6009SAO PAULO62140510gysbC0QpVQ6304cVE2')">Pagar com Pix (copia e cola)</button>
         <textarea id="pix-code-premium" readonly></textarea>
