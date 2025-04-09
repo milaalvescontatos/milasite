@@ -498,10 +498,10 @@
     </script>
 
   <!-- Fundo escurecido -->
-<div id="whatsapp-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 9998;"></div>
+<div id="whatsapp-overlay" onclick="fecharChatWhatsApp()" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 9998;"></div>
 
 <!-- Janela de chat estilo WhatsApp -->
-<div id="whatsapp-chat" style="display: none; position: fixed; bottom: 80px; right: 20px; z-index: 9999; width: 320px; max-width: 90%; background-color: #e5ddd5; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); overflow: hidden; font-family: sans-serif;">
+<div id="whatsapp-chat" onclick="event.stopPropagation()" style="display: none; position: fixed; bottom: 80px; right: 20px; z-index: 9999; width: 320px; max-width: 90%; background-color: #e5ddd5; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); overflow: hidden; font-family: sans-serif;">
   <!-- Cabeçalho -->
   <div style="background-color: #075E54; color: white; padding: 12px; display: flex; align-items: center;">
     <div style="width: 40px; height: 40px; border-radius: 50%; background: url('https://raw.githubusercontent.com/milaalvescontatos/milasite/main/foto%20perfil%20wtsap.png') center/cover no-repeat; margin-right: 10px;"></div>
@@ -540,12 +540,17 @@
     <button onclick="fecharChatWhatsApp()" style="background-color: #ccc; border: none; padding: 8px; border-radius: 16px; cursor: pointer; width: 100%; font-size: 14px;">
       Ainda não escolhi meu pacote
     </button>
+
+    <!-- Aviso de erro -->
+    <div id="aviso-comprovante" style="display: none; font-size: 12px; color: #a00; margin-top: 8px; text-align: center;">
+      ⚠️ Selecione o comprovante para enviar mensagem.
+    </div>
   </div>
 
   <!-- Rodapé fake de chat -->
-  <div style="padding: 8px 12px; display: flex; align-items: center; background-color: #f0f0f0;">
-    <span style="font-size: 20px; margin-right: 8px; cursor: pointer;">😊</span>
-    <span style="font-size: 20px; margin-right: 8px; cursor: pointer;">📎</span>
+  <div onclick="verificarComprovante()" style="padding: 8px 12px; display: flex; align-items: center; background-color: #f0f0f0; cursor: pointer;">
+    <span style="font-size: 20px; margin-right: 8px;">😊</span>
+    <span style="font-size: 20px; margin-right: 8px;">📎</span>
     <div style="background-color: white; flex: 1; padding: 8px 12px; border-radius: 20px; color: #999; font-size: 14px;">
       Escreva uma mensagem...
     </div>
@@ -565,6 +570,8 @@
   const whatsappChat = document.getElementById('whatsapp-chat');
   const overlay = document.getElementById('whatsapp-overlay');
   const botaoFinal = document.getElementById('botao-wpp-final');
+  const avisoComprovante = document.getElementById('aviso-comprovante');
+  const inputComprovante = document.getElementById('comprovante-upload');
 
   ctaFixo?.addEventListener('click', () => {
     ctaFixo.style.display = 'none';
@@ -583,12 +590,23 @@
 
   function liberarBotaoWhatsApp() {
     botaoFinal.style.display = 'block';
+    avisoComprovante.style.display = 'none';
+  }
+
+  function verificarComprovante() {
+    if (!inputComprovante.files.length) {
+      avisoComprovante.style.display = 'block';
+      setTimeout(() => {
+        avisoComprovante.style.display = 'none';
+      }, 3000);
+    }
   }
 
   function irParaWhatsApp() {
     window.location.href = 'https://wa.me/553599028959?text=Oi+Mila,+acabei+de+enviar+o+comprovante+do+meu+pack.+Pode+verificar%3F+%F0%9F%92%8B';
   }
 </script>
+
 
 
 
