@@ -497,39 +497,46 @@
     }
     </script>
 
-  <!-- Fundo escurecido tipo modal -->
+  <!-- Fundo escurecido -->
 <div id="whatsapp-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 9998;"></div>
 
 <!-- Janela de chat estilo WhatsApp -->
 <div id="whatsapp-chat" style="display: none; position: fixed; bottom: 80px; right: 20px; z-index: 9999; width: 320px; max-width: 90%; background-color: #fff; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); overflow: hidden; font-family: sans-serif;">
-  <!-- Cabeçalho do chat -->
+  <!-- Cabeçalho -->
   <div style="background-color: #075E54; color: white; padding: 12px; display: flex; align-items: center;">
-    <div style="width: 40px; height: 40px; border-radius: 50%; background: url('SUA-FOTO-DE-PERFIL-AQUI.jpg') center/cover no-repeat; margin-right: 10px;"></div>
+    <div style="width: 40px; height: 40px; border-radius: 50%; background: url('SUA-FOTO-AQUI.jpg') center/cover no-repeat; margin-right: 10px;"></div>
     <div>
       <div style="font-weight: bold;">Milla Alves</div>
       <div style="font-size: 12px;">online</div>
     </div>
   </div>
-  <!-- Mensagem da Mila -->
-  <div style="padding: 14px; background-color: #dcf8c6; font-size: 14px; border-radius: 0 16px 16px 16px; margin: 12px; max-width: 80%;">
-    😘 Amor, envia o comprovante aqui pra eu te atender no Whats 💖
-  </div>
 
-  <!-- Input e botões -->
-  <div style="padding: 0 14px 14px 14px;">
-    <input type="file" id="comprovante-upload" style="margin-bottom: 10px;">
-    <button onclick="irParaWhatsApp()" style="background-color: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 8px;">
+  <!-- Balão de mensagem -->
+  <div style="padding: 14px;">
+    <div style="background-color: #f0f0f0; color: #111; font-size: 14px; border-radius: 0 16px 16px 16px; padding: 12px; max-width: 100%; margin-bottom: 10px;">
+      😘 Amor, envia o comprovante aqui mesmo nessa conversa pra eu te liberar o conteúdo no Whats 💖
+      <br><br>
+      <small style="color: #444;">📎 É só clicar no botão abaixo e escolher a imagem do comprovante no seu celular.</small>
+    </div>
+
+    <!-- Upload de comprovante -->
+    <input type="file" id="comprovante-upload" onchange="liberarBotaoWhatsApp()" style="margin-bottom: 12px; width: 100%;">
+
+    <!-- Botão de enviar -->
+    <button id="botao-wpp-final" onclick="irParaWhatsApp()" style="display: none; background-color: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; margin-bottom: 8px;">
       💌 Falar com a Mila
     </button>
+
+    <!-- Botão de fechar -->
     <button onclick="fecharChatWhatsApp()" style="background-color: #ccc; border: none; padding: 8px; border-radius: 8px; cursor: pointer; width: 100%; font-size: 14px;">
       Ainda não escolhi meu pacote
     </button>
   </div>
 </div>
 
-<!-- Botão flutuante do WhatsApp -->
-<div id="whatsapp-fixo" style="display: none; position: fixed; bottom: 80px; right: 20px; z-index: 9999; text-align: center;">
-  <button id="icone-wpp" onclick="mostrarConversaWhatsApp()" style="background-color: #25D366; border: none; color: white; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;">
+<!-- Botão flutuante -->
+<div id="whatsapp-fixo" style="display: none; position: fixed; bottom: 80px; right: 20px; z-index: 9999;">
+  <button onclick="mostrarConversaWhatsApp()" style="background-color: #25D366; border: none; color: white; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;">
     <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
   </button>
 </div>
@@ -539,6 +546,7 @@
   const whatsappFixo = document.getElementById('whatsapp-fixo');
   const whatsappChat = document.getElementById('whatsapp-chat');
   const overlay = document.getElementById('whatsapp-overlay');
+  const botaoFinal = document.getElementById('botao-wpp-final');
 
   ctaFixo.addEventListener('click', () => {
     ctaFixo.style.display = 'none';
@@ -553,6 +561,10 @@
   function fecharChatWhatsApp() {
     whatsappChat.style.display = 'none';
     overlay.style.display = 'none';
+  }
+
+  function liberarBotaoWhatsApp() {
+    botaoFinal.style.display = 'block';
   }
 
   function irParaWhatsApp() {
