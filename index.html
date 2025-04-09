@@ -489,6 +489,39 @@
         btn.style.display = 'inline-block';
       }
     }
+    </script>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <div id="whatsapp-fixo" style="display: none; position: fixed; bottom: 80px; right: 20px; z-index: 9999; text-align: center;">
+    <label for="comprovante-upload" style="background-color: #25D366; color: white; padding: 12px 16px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: inline-block;">
+      📎 Enviar Comprovante
+    </label>
+    <input type="file" id="comprovante-upload" style="display: none;" onchange="liberarWhatsAppFlutuante()">
+
+    <button id="botao-wpp-final" onclick="irParaWhatsApp()" style="display: none; margin-top: 8px; background-color: #25D366; color: white; padding: 10px 20px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer;">
+      📲 Falar com a Mila
+    </button>
+  </div>
+
+  <script>
+    const ctaFixo = document.getElementById('cta-fixo');
+    const whatsappFixo = document.getElementById('whatsapp-fixo');
+
+    ctaFixo.addEventListener('click', () => {
+      ctaFixo.style.display = 'none';
+      whatsappFixo.style.display = 'block';
+    });
+
+    function liberarWhatsAppFlutuante() {
+      document.getElementById('botao-wpp-final').style.display = 'inline-block';
+      alert('Comprovante selecionado! Agora você pode falar com a Mila no WhatsApp 😉');
+    }
+
+    function irParaWhatsApp() {
+      window.location.href = 'https://wa.me/553599028959?text=Oi+Mila,+acabei+de+enviar+o+comprovante+do+meu+pack.+Pode+verificar%3F+%F0%9F%92%8B';
+    }
   </script>
+
 </body>
 </html>
+
