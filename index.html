@@ -500,19 +500,19 @@
   <!-- Botão flutuante do WhatsApp -->
 <div id="whatsapp-fixo" style="display: none; position: fixed; bottom: 80px; right: 20px; z-index: 9999; text-align: center;">
 
-  <!-- Mensagem sexy da Mila -->
-  <div id="mensagem-mila" style="background: #fff; color: #111; font-weight: 600; padding: 10px 14px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 10px; font-size: 14px; position: relative;">
-    😘 Amor, clica no botão e seleciona o comprovante pra eu te atender no Whats 💖
-    <span style="position: absolute; bottom: -10px; left: 20px; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #fff;"></span>
+  <!-- Mensagem de balão estilo WhatsApp -->
+  <div id="mensagem-mila" style="display: none; background: #dcf8c6; color: #111; font-weight: 500; padding: 10px 14px; border-radius: 18px 18px 0 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 8px; font-size: 14px; position: relative; max-width: 220px; text-align: left;">
+    😘 Amor, envia o comprovante aqui pra eu te atender no Whats 💖
+    <span style="position: absolute; bottom: -8px; left: 15px; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #dcf8c6;"></span>
   </div>
 
-  <!-- Ícone do WhatsApp como botão para selecionar comprovante -->
-  <label for="comprovante-upload" style="background-color: #25D366; color: white; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;">
+  <!-- Ícone do WhatsApp -->
+  <button id="icone-wpp" onclick="mostrarConversaWhatsApp()" style="background-color: #25D366; border: none; color: white; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;">
     <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
-  </label>
+  </button>
 
-  <!-- Input escondido -->
-  <input type="file" id="comprovante-upload" style="display: none;" onchange="liberarWhatsAppFlutuante()">
+  <!-- Input de comprovante -->
+  <input type="file" id="comprovante-upload" style="display: none;" onchange="liberarBotaoWhatsApp()">
 
   <!-- Botão para ir pro WhatsApp -->
   <button id="botao-wpp-final" onclick="irParaWhatsApp()" style="display: none; margin-top: 10px; background-color: #25D366; color: white; padding: 10px 20px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer;">
@@ -523,21 +523,43 @@
 <script>
   const ctaFixo = document.getElementById('cta-fixo');
   const whatsappFixo = document.getElementById('whatsapp-fixo');
+  const mensagemMila = document.getElementById('mensagem-mila');
+  const inputComprovante = document.getElementById('comprovante-upload');
+  const botaoFinal = document.getElementById('botao-wpp-final');
+  const iconeWpp = document.getElementById('icone-wpp');
+
+  let timerReset = null;
 
   ctaFixo.addEventListener('click', () => {
     ctaFixo.style.display = 'none';
     whatsappFixo.style.display = 'block';
   });
 
-  function liberarWhatsAppFlutuante() {
-    document.getElementById('botao-wpp-final').style.display = 'inline-block';
-    document.getElementById('mensagem-mila').textContent = 'Perfeito! Agora é só clicar pra falar comigo no WhatsApp, gostoso 😘';
+  function mostrarConversaWhatsApp() {
+    mensagemMila.style.display = 'block';
+    inputComprovante.style.display = 'block';
+    botaoFinal.style.display = 'none';
+
+    // Timer pra resetar se não fizer nada em 8 segundos
+    clearTimeout(timerReset);
+    timerReset = setTimeout(() => {
+      mensagemMila.style.display = 'none';
+      inputComprovante.style.display = 'none';
+      botaoFinal.style.display = 'none';
+    }, 8000);
+  }
+
+  function liberarBotaoWhatsApp() {
+    clearTimeout(timerReset);
+    mensagemMila.textContent = 'Perfeito! Agora é só clicar pra falar comigo no WhatsApp, gostoso 😘';
+    botaoFinal.style.display = 'inline-block';
   }
 
   function irParaWhatsApp() {
     window.location.href = 'https://wa.me/553599028959?text=Oi+Mila,+acabei+de+enviar+o+comprovante+do+meu+pack.+Pode+verificar%3F+%F0%9F%92%8B';
   }
 </script>
+
 
 
 
