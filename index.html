@@ -217,7 +217,7 @@
 <h1 style="font-size: 24px; margin: 20px 0 10px;">Está pronto para desbloquear o prazer proibido? 💋</h1>
 <p style="font-size: 16px; color: #f8f8f8; margin-bottom: 30px;">Escolha seu pack exclusivo abaixo e receba tudo direto no seu WhatsApp. Acesso discreto, rápido e sem assinatura! 🔞</p>
 
-<div class="container" id="pacotes">
+<div class="container" id="area-pacotes">
 
     <!-- PACK INICIAL -->
 <div class="pack">
@@ -608,16 +608,30 @@
     window.location.href = 'https://wa.me/553599028959?text=Oi+Mila,+acabei+de+enviar+o+comprovante+do+meu+pack.+Pode+verificar%3F+%F0%9F%92%8B';
   }
 </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const areaPacotes = document.getElementById('area-pacotes');
+    const botaoCta = document.getElementById('cta-fixo');
+    const botaoWhatsapp = document.getElementById('whatsapp-fixo');
 
+    if (areaPacotes && botaoCta && botaoWhatsapp) {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              botaoCta.style.display = 'none';
+              botaoWhatsapp.style.display = 'block';
+              observer.unobserve(areaPacotes);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
 
-
-
-
-
-
-
-
-
+      observer.observe(areaPacotes);
+    }
+  });
+</script>
 </body>
 </html>
 
