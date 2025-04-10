@@ -241,33 +241,13 @@
       <span style="font-size: 14px;">✅ Conteúdo exclusivo e verificado</span>
     </div>
 
-    <button onclick="copiarPix('inicial', '00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC')">
-      Pagar com Pix (copia e cola)
+        <button onclick="copiarPixSimplificado('00020126450014BR.GOV.BCB.PIX0123millaalves941@gmail.com520400005303986540514.905802BR5917Mila Alves Vieira6009SAO PAULO62140510RcOzQG2vKV63044BDC', 'msg-inicial')">
+      💸 Pagar com Pix (copia e cola)
     </button>
 
-    <textarea id="pix-code-inicial" readonly></textarea>
-
-    <div class="tutorial">
-      <p><strong>Agora é só um passo entre você... e meu lado mais proibido 💋</strong></p>
-      <ul>
-        <li>💥 Toque em “Pagar com Pix (copia e cola)”</li>
-        <li>👅 Vá no seu banco, cole o código... e sinta a antecipação</li>
-        <li>💸 Confirme o valor... e pense no que vai receber em troca 😈</li>
-        <li>📁 Me mostra que pagou: <strong>envie o comprovante na caixa ESCOLHER ARQUIVO</strong></li>
-        <li>💬 E aí... me deixa te pegar no WhatsApp com algo só seu. Sem censura. Sem limites...</li>
-      </ul>
+    <div id="msg-inicial" class="tutorial" style="display: none; margin-top: 10px;">
+      💬 Agora é só colar o Pix no seu banco e me chamar no botão aqui do lado. Tô te esperando no Whats 😘
     </div>
-
-    <input type="file" id="file-inicial" onchange="liberarEnvio('inicial')">
-    <button id="enviar-inicial" class="confirm-button" style="display:none" onclick="window.location.href='https://wa.me/553599028959?text=Oi+Mila,+acabei+de+fazer+o+pagamento+do+Pack+Inicial+por+Pix.+Segue+meu+comprovante+%F0%9F%92%8B'">
-      Enviar Comprovante
-    </button>
-
-    <div id="countdown-inicial" class="countdown" style="display:none;">
-      Tempo restante: 10:00
-    </div>
-  </div>
-</div>
 
 
     <!-- PACK PRATA -->
@@ -639,9 +619,20 @@
         { threshold: 0.2 }
       );
 
-      observer.observe(areaPacotes);
+        observer.observe(areaPacotes);
     }
   });
+</script> <!-- 👈 esse fecha o script anterior corretamente -->
+
+<!-- 👇 novo script que você está adicionando -->
+<script>
+  function copiarPixSimplificado(codigo, idMensagem) {
+    navigator.clipboard.writeText(codigo).then(() => {
+      const msg = document.getElementById(idMensagem);
+      if (msg) msg.style.display = 'block';
+    });
+  }
 </script>
+
 </body>
 </html>
