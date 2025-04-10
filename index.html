@@ -446,7 +446,7 @@
 
 
 
-<button id="cta-fixo">
+  <button id="cta-fixo">
   Quero Acessar os Pacotes 🔥
 </button>
 
@@ -577,15 +577,16 @@
   const inputComprovante = document.getElementById('comprovante-upload');
 
   ctaFixo?.addEventListener('click', () => {
-  const areaPacotes = document.getElementById('pacotes'); // ou 'area-pacotes', conforme seu ID
+  const areaPacotes = document.getElementById('area-pacotes');
+
   if (areaPacotes) {
     areaPacotes.scrollIntoView({ behavior: 'smooth' });
 
-    // Espera o scroll terminar antes de trocar os botões
+    // Espera o scroll acontecer antes de ocultar o botão e mostrar o WhatsApp
     setTimeout(() => {
       ctaFixo.style.display = 'none';
       whatsappFixo.style.display = 'block';
-    }, 800); // Ajuste o tempo se quiser mais rápido ou mais lento
+    }, 800); // tempo em milissegundos (0.8s)
   }
 });
 
